@@ -24,6 +24,8 @@ module.exports = (app) => {
     //Connect-Flash Middleware
     app.use(flash())
 
+    app.set('trust proxy', 1)
+
     
     
 

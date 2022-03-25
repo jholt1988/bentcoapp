@@ -9,10 +9,10 @@ const Auth= require('../Services/AuthService');
 
 
 module.exports = (app, passport) => {
-    app.use('/auth', router);
+    app.use('/api/auth', router);
 
 
-    router.post('/authenticate',
+    router.post('/login',
         passport.authenticate('local'), Auth.login)
        
     router.get('/', isAuthenticated, (req, res, done) => {
