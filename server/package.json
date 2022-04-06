@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/jholt1988/BentlyRetailCo#readme",
   "dependencies": {
-    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
     "berecoapi2.0": "file:berecoapi2.0-2.0.0.tgz",
     "connect-flash": "^0.1.1",
     "cors": "^2.8.5",
