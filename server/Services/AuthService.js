@@ -14,28 +14,23 @@ const bcrypt = require('bcryptjs');
     *
     * */
 
-exports.login = async (req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
+exports.login = async (req, res ) => {
+    try {
+    const username = await req.body.username;
+    const password = await req.body.password;
+    
     // const user = User.authenticate(username, password)
-        
-    await  User.findOne({
-        where: { username: username }
-    }).then(user => {
-        user.getProfile({
-                       
-            where: { UserId: user.id }
-        }
-        )
-            .then(profile => {
-                res.status(202).send({ user, profile })
-            })
-            
-    })
-                
-        .catch(err => {
-            throw new Error(err.message);
+  
+        await User.findOne({
+            where: { username: username }
+        }).then((user) => {
+            res.status(200).send(user)
         })
+
+    }
+        catch(err)  {
+            throw new Error(err.message);
+        }
     
         
 

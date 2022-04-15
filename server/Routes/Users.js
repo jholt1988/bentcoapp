@@ -4,9 +4,9 @@ const router = express.Router();
 const User = require('../Services/UserService');
 
 module.exports = (app) => {
-    app.use('/users', router);
+    app.use('/api/user', router);
   
-    router.get('/:userId', isAuthenticated, User.LoadById);
+    router.get('/account', isAuthenticated, User.LoadProfileById);
 
     router.put('/:userId', isAuthenticated, User.UpdateProfile)
 

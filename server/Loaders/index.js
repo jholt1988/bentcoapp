@@ -15,10 +15,12 @@ module.exports = async (app) => {
         await swaggerLoader(app)
         // Error Handler
         app.use((err, req, res, next) => {
+                if (err) {
+                    res.send(err)
+                 }
 
-                const { message, status } = err;
-
-                return res.status(status).send({ message });
+        
+                next(null)
         })
 
         return app

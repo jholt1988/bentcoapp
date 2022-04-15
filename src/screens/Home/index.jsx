@@ -1,20 +1,27 @@
 import { useDispatch, useSelector } from "react-redux"
 import { actions } from "../../store/actions"
-import "./index.css"
+import {createTheme} from "@mui/material/styles"
+import MenuAppBar from '../../components/Header/index'
+
 
 const Home = () => {
   const dispatch = useDispatch()
   const { quote, loading } = useSelector((state) => state.quote)
   const handleRandomQuote = () => dispatch(actions.GetRandomQuote())
+  
+
 
   return (
+   
     <div className={"home"}>
+        <MenuAppBar className={'header'}/>
       <h2 className={"heading"}>Home</h2>
       <div className={"quote"}>
         <p>{quote?.content ?? (loading ? "Loading..." : "- - -")}</p>
         <button onClick={handleRandomQuote}>Get Random Quote</button>
+        </div>
       </div>
-    </div>
+    
   )
 }
 

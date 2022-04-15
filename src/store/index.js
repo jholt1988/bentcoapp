@@ -1,10 +1,12 @@
-import { applyMiddleware, compose, createStore } from "redux"
-import appReducer from "./reducers"
-import thunk from "redux-thunk"
+import {configureStore} from '@reduxjs/toolkit'
+import quoteReducer from "../store/reducers/quoteReducer";
+import userReducer from "../store/userSlice/userSlice";
+import authReducer from "../store/authSlice/authSlice";
+ const store = configureStore({
+     reducer: {
+           quote:  quoteReducer,
+            user: userReducer,
+            auth:  authReducer}
+     })
 
-const middlewares = [thunk]
-const enhancer = (process.env.NODE_ENV === "development"
-  ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?? compose
-  : compose)(applyMiddleware(...middlewares))
-
-export default createStore(appReducer, enhancer)
+  export default store

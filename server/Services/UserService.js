@@ -1,12 +1,15 @@
-const { request } = require('express');
+
 const { User, Profile } = require('../db');
 
-exports.LoadById = (req, res) => { 
-const userId = req.params.userId
-         Profile.findOne({ where: { UserId: userId } })
+exports.LoadProfileById = (req, res) => { 
+    const userId = req.body.userId
+
+
+
+         Profile.findOne({ where: { userId: userId} })
             .then(data => {
-                if (data) {
-                    res.send(data) 
+                if (data) { 
+                    res.send(data)
                 }
             })
             

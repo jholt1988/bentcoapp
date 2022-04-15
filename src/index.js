@@ -1,12 +1,27 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import App from "./App"
+import { Provider } from "react-redux"
+
+
+import { ThemeProvider } from "@mui/system"
+import { themeOptions } from "./theme.js"
+import { CssBaseline } from "@mui/material"
 import reportWebVitals from "./reportWebVitals"
+
+import store from "./store/index.js"
+import App from "./App"
 import "./index.css"
+
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}> 
+      <ThemeProvider theme={themeOptions}>
+        <CssBaseline />
+        <App />
+      </ThemeProvider>
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 )

@@ -13,8 +13,14 @@ module.exports = (app, passport) => {
 
 
     router.post('/login',
-        passport.authenticate('local'), Auth.login)
-       
+        passport.authenticate('local', {failureRedirect: '/'} ), (req, res) => {
+            const user = req.user
+            
+            res.send(req.user)
+        }
+    )
+
+
     router.get('/', isAuthenticated, (req, res, done) => {
         res.redirect(`../users/${req.user.id}`)
     })
@@ -72,7 +78,7 @@ module.exports = (app, passport) => {
             .then(data => {
                 if (data) {
                     
-                    return res.status(200).send(data)
+                     res.status(200).send(data)
                 }
             
             }

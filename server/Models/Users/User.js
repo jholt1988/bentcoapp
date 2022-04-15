@@ -1,39 +1,34 @@
-const { DataTypes, Model, Op } = require('sequelize');
-const bcrypt = require('bcryptjs')
+const { DataTypes, Model, } = require('sequelize');
+const bcrypt = require('bcryptjs');
+const SALT = 10
+
 
         
 module.exports = (sequelize, Sequelize) => {
     class UserModel extends Model {
-        static async validatePassword(password, hashpass, done, user) {
-            
-            await bcrypt.compare(password, hashpass, function (err, isMatch) {
-                if (err) {
-                    console.log(err)
-                }
-                else if (isMatch) {
-                    done(null, user)
-                } else {
-                    done(null, false)
-                }
-               
+
+
+        validatePassword(canidatePassword,hash, cb) {
+            bcrypt.compare(canidatePassword, hash,  function (err, isMatch) {
+                if (err) return cb(err)
+                cb(null, isMatch)
             })
-        
         }
-    
         
-        static async userExist  (username, email) {
+        static async userExist(username, email) {
             let user = await this.findOne({ where: { username: username } });
             if (user) { return { username: 'This username already taken ' } };
             user = await this.findOne({ where: { email: email } });
             if (user) { return { email: 'This email address is already associated with another user' } };
             return false
         }
-  
+    
+}
          
 
 
 
-    }
+
 
     
     UserModel.init({
@@ -70,22 +65,22 @@ module.exports = (sequelize, Sequelize) => {
         {
             
             hooks: {
-                beforeSave: hashPassword = async (user) => {
-                    if (user.isNewRecord) {
-                        const salt = await bcrypt.genSalt(10, "b");
-                        user.password = await bcrypt.hashSync(user.password, salt)
+                beforeSave: hashPassword =  (user, options) => {
+                      bcrypt.genSalt(SALT, function (err, salt) {
+                            if (err) { return next(err) }
+                        
+                         bcrypt.hash(user.password, salt, function (err, hash){
+                            if (err) { return next(hash)}
+                            console.log(hash)
+                            user.password = hash
+                            next()
+                            
+                        })
                         console.log(user.password)
                         console.log(user.isNewRecord)
-                    }
-                },
-                beforeUpdate: async (user) => {
-                    if (user.password) {
-                        const salt = await bcrypt.genSalt(10, "b");
-                        user.password = await bcrypt.hashSync(user.password, salt);
-                        console.log(user.password)
-                        
-                    }
+                    })
                 }
+
             },
             sequelize, modelName: 'User'
         })
