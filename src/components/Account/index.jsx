@@ -38,7 +38,12 @@ function Account({ authenticated }) {
     const [userProfile, setUserProfile] = useState();
     const [expanded, setExpanded] = useState(false);
   const isAuthenticated = useSelector((state) => state.isAuthenticated);
-  
+  // useEffect(() => {
+    
+  //     setUser(dispatch)
+  //     setProfile(dispatch)
+    
+  // }, [dispatch])
 
   const setUser = async (dispatch) => {
     
@@ -66,12 +71,7 @@ function Account({ authenticated }) {
     }
   }
 
-  useEffect(() => {
-    
-      setUser(dispatch)
-      setProfile(dispatch)
-    
-  }, [dispatch,setUser, setProfile])
+  
   
 
     
@@ -94,8 +94,8 @@ console.log(userProfile, currUser)
             <MoreVertIcon />
           </IconButton>
         }
-        username={userProfile.firstName + userProfile.lastName}
-        memberSince={currUser.createdAt}
+        // username={userProfile.firstName + userProfile.lastName}
+        // memberSince={currUser.createdAt}
       />
       <CardMedia
         component="img"
@@ -105,10 +105,10 @@ console.log(userProfile, currUser)
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-                    UserName: {currUser.username}
-                    DOB:{userProfile.DOB}
-                    Email:{userProfile.email}
-          
+                    {/* UserName: {currUser.username} */}
+                    {/* DOB:{userProfile.DOB} */}
+                    {/* Email:{userProfile.email} */}
+      
         </Typography>
       </CardContent>
       <CardActions disableSpacing>

@@ -10,11 +10,12 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import { Button, Typography } from '@mui/material'; 
+import { Button, Typography, SvgIcon } from '@mui/material'; 
 import { Link } from 'react-router-dom';
+import  Logo from'../HomeLogo/HomeLogo';
 
 export default function MenuAppBar({user}) {
-  const [auth, setAuth] = React.useState(true);
+  const [auth, setAuth] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleChange = (event) => {
@@ -30,9 +31,9 @@ export default function MenuAppBar({user}) {
   };
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1}}>
 
-      <AppBar position="static">
+      <AppBar position="static" height="fit-content" >
         <Toolbar>
           <IconButton
             size="large"
@@ -44,15 +45,25 @@ export default function MenuAppBar({user}) {
             <MenuIcon />
           </IconButton>
           
-          <Typography variant='h4' component="div" sx={{ flexGrow: 1 }}>
-
-            Professor Bentley Exquisite Electronics Boutique
-            </Typography>
-          {auth && (
-            <div>
+          
+           
+            <object style={{position:"relative", width:100, height:100, paddingtop:'100.0000%',
+ paddingbottom:"48px", boxshadow:"0 2px 8px 0 rgba(63,69,81,0.16)", margintop:"1.6em", marginbottom:"0.9em", marginright:"2em",overflow: "hidden",
+ borderradius:"8px", willchange:"transform"}}>
+  <iframe title='homelogo' loading="lazy" style={{position:"absolute", width:"100%", height:"100%", top:0, left:0, border:"none", padding:0, margin:0}}
+    src="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAE-AuDUGbE&#x2F;watch?embed"   allow="loop">
+  </iframe>
+</object>
+<a href="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAE-AuDUGbE&#x2F;watch?utm_content=DAE-AuDUGbE&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">Electronics</a> by Jordan Holt
+            
+           
+          
+          {!auth && (
+            <div ml='10em'>
             <IconButton
               size="large"
-              aria-label='login'
+                aria-label='login'
+            
                 component={Link} to={'/login'}
               color='inherit'>
               Login
@@ -70,6 +81,13 @@ export default function MenuAppBar({user}) {
                 component={Link} to={'/register'}
               color='inherit'>
                 Register
+              </IconButton>
+              <IconButton
+              size="large"
+              aria-label='AddToCart'
+                component={Link} to={'/product/add'}
+              color='inherit'>
+                Add To Cart
               </IconButton>
             </div>
                

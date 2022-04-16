@@ -14,7 +14,7 @@ const Home = () => {
   return (
    
     <div className={"home"}>
-        <MenuAppBar className={'header'}/>
+       
       <h2 className={"heading"}>Home</h2>
       <div className={"quote"}>
         <p>{quote?.content ?? (loading ? "Loading..." : "- - -")}</p>

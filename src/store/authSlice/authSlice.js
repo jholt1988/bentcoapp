@@ -9,6 +9,13 @@ const loading = {
     SUCCESS: 'Success',
     ERROR: 'Error'
 }
+// Async Thunk Functions
+
+/**
+ * User login
+ * @param credentials {Object} {username, password}
+ * @returns action.payload(userid, username)
+ */
 
 export const login = createAsyncThunk('auth/userLogin',
   async  (credentials, thunkAPI) => {
@@ -19,11 +26,19 @@ export const login = createAsyncThunk('auth/userLogin',
         return response
     })
 
+/**
+* Register New User
+* @param userData {Object} {userid, data}
+* @returns action.payload  {}
+*/
+
 const registerUser = createAsyncThunk('auth/register',
     (userData, thunkAPI) => {
         const response =  register(userData)
         return response
-})
+    })
+
+
 
 const authSlice = createSlice({
     name: 'auth', 

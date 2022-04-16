@@ -9,7 +9,7 @@ import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import {LocalizationProvider, CalendarPicker} from '@mui/x-date-pickers'
 import moment from 'moment'
-import { BorderAllOutlined, Rowing } from "@mui/icons-material";
+import { Stack } from "@mui/material";
 
 
 function RegisterForm(props) {
@@ -43,62 +43,66 @@ function RegisterForm(props) {
 
 
     return (
-        <Container sx={{ display: "flex", flexDirection: "column", flexWrap: "wrap", width: "35%", border:5, borderColor:"primary" }}>
-            <form onsubmit={onsubmit} sx={{ width: "100%" }}  >
+        <Stack sx={{ display: "flex", flexDirection: "column" , border:5, borderColor:"primary", alignItems:"center", }} >
+            <form onSubmit={onsubmit}  >
                 <div className='registerFormHeader' >
-                    <AppRegistrationIcon sx={{
-                           fontSize: 125 , ml:90, mr:100}}    color= "secondary"  />
+                    <span sx={{ width:'550' }}>
+                    <AppRegistrationIcon sx={{ mx:300,
+                            fontSize:"5rem", flexGrow:'2'
+                           
+                        }} color="secondary" />
+                    </span>
                    
                 </div>
-                <div className="registerFormBody" justifyContent="center"  >
+                <div sx={{px: 600, display:'flex'}} className="registerFormBody">
                 
-                        <div>
-                           <TextField margin="normal" sx={{px:"200" ,width:'80%'}} variant="outlined" label="Username" name="username" id="username"
+                        
+                    <TextField sx={{
+                        mx: 60, px: 50, alignItems: 'center' }}margin="normal" variant="outlined" label="Username" name="username" id="username"
                                 autoComplete="username" value={formik.values.username} onChange={formik.handleChange}/>
-                        </div>
-                        <div>
-                           <TextField margin="normal" sx={{px:"200", width:'80%'}}variant="outlined" label="Email" name="email" id="email"
+                        
+                    
+                           <TextField sx={{mx:40, px:50}} margin="normal" variant="outlined" label="Email" name="email" id="email"
                                 autoComplete="email" value={formik.values.email} onChange={formik.handleChange} />
-                        </div>    
-                       <div>
-                    <TextField margin="normal" sx={{px:"200", width:'80%'}} variant="outlined" label="First Name" name="firstname" id="firstname"
+                        
+                       
+                    <TextField  sx={{mx:60, px:50}}margin="normal"  variant="outlined" label="First Name" name="firstname" id="firstname"
                         autoComplete="firstname" value={formik.values.firstname} onChange={formik.handleChange} />
-                       </div>
-                      <div>
-                     <TextField margin="normal" sx={{px:"200", width:'80%'}} variant="outlined" label="Last Name" name="lastname" id="lastname"
+                       
+                      
+                     <TextField  sx={{mx:40, px:50}}margin="normal"  variant="outlined" label="Last Name" name="lastname" id="lastname"
                         autoComplete="lastname" value={formik.values.lastname} onChange={formik.handleChange} />
-                    </div>
-                    <div>
-                     <TextField margin="normal" sx={{px:"200", width:'80%'}}  variant="outlined" label="Password" name="password" id="password"
+                    
+                    
+                     <TextField sx={{mx:60, px:50}} margin="normal"   variant="outlined" label="Password" name="password" id="password"
                                autoComplete="password" value={formik.values.password} onChange={formik.handleChange}/>
-                    </div> 
-                    <div>
-                        <TextField margin="normal" sx={{ px: "200", width: '80%' }}  variant="outlined" label="Verify Password" name="verifypassword" id="verifypassword"
+                    
+                    
+                        <TextField sx={{mx:40, px:50 }} margin="normal"   variant="outlined" label="Verify Password" name="verifypassword" id="verifypassword"
                              
                              autoComplete="verifypassword" value={formik.values.verifypassword} onChange={formik.handleChange}/>  
-                    </div>
-                        <span>
+                    
+                    <span>
+                        <Typography sx={{px:200}} variant='h6' color='text.secondary'>Date Of Birth</Typography>
                         <LocalizationProvider dateAdapter={AdapterMoment}>
-                            <Typography variant='h5' color='text.secondary'>Date Of Birth</Typography>
                         <CalendarPicker label="BirthDate" name="birthdate" id="birthdate" value={formik.values.DOB}
                             onChange={formik.handleChange} allowSameDateSelection={false}/>
                     </LocalizationProvider>
                     </span>
                     <span>
-                    <FormGroup>
+                    <FormGroup sx={{mx: 200, yx:200}}>
                         <FormControlLabel control={<Checkbox defaultChecked />} label="I want to recieve updates, discounts, and other marketing via emal" />
-                         <FormControlLabel disabled control={<Checkbox />} label="Disabled" />
                         </FormGroup> 
                     </span>
-                    <span sx={{ width:'100%' }}>
-                        <Button sx={{mx:100, yx:100 }} size="large" type='Submit' variant='outlined'  >Submit</Button>
+                    <span>
+                        <Button sx={{mx:300, color:"secondary.dark"  }} size="large" type='Submit' variant='outlined' >Submit</Button>
 
                     </span>
                 </div>
                 
 
             </form>
-        </Container>
+        </Stack>
     )
 }
 
